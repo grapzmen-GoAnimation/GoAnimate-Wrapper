@@ -1,10 +1,18 @@
-<html><head></head><body>
+<html><head><title>Select A List</title></head><body>
 	<header>
 		<div>
 			<div>
 				<a href="./list.html"><img src="logo.png"></a>
 			</div>
 			<div>
+							<div class="char_dropdown button_small">
+					<div>LIST</div>
+					<menu>
+						<a href="./list-movies.html">Movies</a>
+						<a href="./list-characters.html">Characters</a>
+						<a href="./list-starters.html">Starters</a>
+					</menu>
+				</div>
 				<div class="char_dropdown button_small">
 					<div>UPLOAD</div>
 					<menu>
@@ -17,67 +25,34 @@
 				<a href="/html/videomaker.html" class="button_big">MAKE A VIDEO</a>
 			</div>
 		</div>
+		<div class="warning">This Will Expire In Jan 27 2026, Go To <a href="https://sites.google.com/view/goanimate-remastered-download">GoAnimate Remastered Website</a> To Check For New GoAnimate Remastered Website When This Expires
+		</div>
 	</header>
 	<table>
 		<thead>
 			<tr>
 				<td></td>
-				<td>Video Title</td>
-				<td>Last Modified</td>
+				<td>List</td>
+				
 				<td></td>
 			</tr>
 		</thead>
-		<tbody></tbody>
+		<tbody><tr><td><img src="/char_thumbs/c-0.png"></td><td><div>List #Movie</div><div>List: Movie</div><div></div></td><td><span>2025-12-28 17:51:43.442Z</span></td><td><a href="./list-movies.html"></a></td></tr><tr><td><img src="/char_thumbs/c-0.png"></td><td><div>List #Character</div><div>List: Character</div><div></div></td><td><span>2025-12-28 17:51:43.442Z</span></td><td><a href="./list-characters.html"></a></td></tr><tr><td><img src="/char_thumbs/c-0.png"></td><td><div>List #Starter</div><div>List: Starter</div><div></div></td><td><span>2025-12-28 17:51:43.442Z</span></td><td><a href="./list-starters.html"></a></td></tr></tbody>
 		<tfoot>
 			<tr>
-				<td colspan="127"><a id="load_more" href="javascript:;">LOAD MORE...</a></td>
+				<td colspan="127"></td>
 			</tr>
 		</tfoot>
 	</table>
-	<form enctype='multipart/form-data' action='/upload_movie' method='post'>
-		<input id='file' type="file" onchange="this.form.submit()" name='import' accept=".xml" />
+	<form enctype="multipart/form-data" action="/upload_movie" method="post">
+		<input id="file" type="file" onchange="this.form.submit()" name="import" accept=".xml">
 	</form>
-    <form enctype='multipart/form-data' action='/upload_character' method='post'>
-		<input id='file2' type="file" onchange="this.form.submit()" name='import' accept=".xml" />
+    <form enctype="multipart/form-data" action="/upload_character" method="post">
+		<input id="file2" type="file" onchange="this.form.submit()" name="import" accept=".xml">
 	</form>
-	<form enctype='multipart/form-data' action='/upload_starter' method='post'>
-		<input id='file3' type="file" onchange="this.form.submit()" name='import' accept=".xml" />
+	<form enctype="multipart/form-data" action="/upload_starter" method="post">
+		<input id="file3" type="file" onchange="this.form.submit()" name="import" accept=".xml">
 	</form>
-	<script>
-		var json;
-		var tbody = document.getElementsByTagName('tbody')[0];
-		var loadMore = document.getElementById('load_more');
-		const listReq = new XMLHttpRequest();
-		listReq.open('GET', '/movieList');
-		listReq.send();
-
-		var C = 0;
-		function loadRows() {
-			let c = C; C += 69;
-			for (; c < C; c++) {
-				if (c > json.length - 1) {
-					loadMore.remove();
-					break;
-				}
-
-				const tbl = json[c];
-				const date = tbl.date.substr(0, 10) + ' ' + tbl.date.substr(11);
-				tbody.insertAdjacentHTML('beforeend',
-					'<tr><td><img src="/movie_thumbs/' + tbl.id + '.png"></td><td><div>' + tbl.title.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</div><div>' + tbl.durationString + '</div></div></td><td><span>' + date + '</span></td><td><a href="javascript:;" onclick="popup(\'' + tbl.id + '\')"></a><a href="/go_full?movieId=' + tbl.id + '"></a><a href="/movies/' + tbl.id + '.xml" download="' + tbl.title + '"></a></td></tr>');
-			}
-		}
-
-		loadMore.onclick = loadRows;
-		listReq.onreadystatechange = function (e) {
-			if (listReq.readyState != 4) return;
-			json = JSON.parse(listReq.responseText);
-			loadRows();
-		}
-
-		function popup(id) {
-			window.open('/player?movieId=' + id, 'MsgWindow', 'width=1280,height=723,left=' + (screen.width / 2 - 640) + ',top=' + (screen.height / 2 - 360));
-		}
-	</script>
 	<style>
 		html {
 			font-family: 'Sailec', Arial, sans-serif;
@@ -432,4 +407,5 @@
 			font-style: normal;
 		}
 	</style>
-</body>
+
+</body></html>
